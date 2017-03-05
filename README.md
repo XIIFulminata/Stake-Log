@@ -14,6 +14,8 @@ I'm recording each session of stakes as its own graph with a restricted window t
 
 -> Overall Graph
 
+-> Turn into a dashboard
+
 ##Martingale System
 ###How it Works 
 
