@@ -1,20 +1,23 @@
-# Stake-Log (WIP)
+# Stake-Log (WIP) ![alt text](http://vignette3.wikia.nocookie.net/runescape2/images/1/1a/Polypore_staff.png/revision/latest?cb=20160502063510 "Polypore Staff")
 Logging and Projecting Stakes, Martingale
 
 ##Background
 
-I wanted an excuse to play Runescape and use d3 or matplotlib, so I decided to record and plan stakes (bets) to get used to matplotlib and d3.js. Staking is a (virtually) 50/50 game of chance. Many gambling addi- I mean Runescape players swear by the [Martingale betting system](https://en.wikipedia.org/wiki/Martingale_(betting_system)), but those who do just haven't used it long enough. I will be recording stakes until I get cleaned (lose all my money).
+I wanted an excuse to play Runescape, so I decided to record and plan stakes (bets) to get used to matplotlib and d3.js. Staking is a (virtually) 50/50 game of chance. Many gambling addi- I mean Runescape players swear by the [Martingale betting system](https://en.wikipedia.org/wiki/Martingale_(betting_system)), but those who do just haven't used it long enough. I will be recording stakes until I get cleaned or my assumption is proven wrong and I become infintely wealthy.
+
+
+
 
 ##Notebook
 
-I'm recording each session of stakes as its own graph with a restricted window to better visualize how volatile my cashflow is. I also created a Martingale Planner that would tell me how much o bet in each scenario, depending on how conservatively I'd like to play.
+I'm recording each session of stakes as its own graph with a restricted window to better visualize how much money I'll be losing. I also created a Martingale Planner that would tell me how much o bet in each scenario, depending on how conservatively I'd like to play.
 
 ##Next Steps
 -> Martingale Simulator (random path for the program to plot)
 
 -> Overall Graph
 
--> Turn into a dashboard
+-> Turn notebook into a dashboard
 
 ##Martingale System
 ###How it Works 
