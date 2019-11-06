@@ -42,10 +42,9 @@ class StakingSimulation(object):
                 self.wins += 1
             else:
                 self.losses += 1
-        print (self.wins, self.losses)
-        print (f"this yields a {self.wins/self.sim_length*100}% win rate")
-        print (f"winning scenarios take an average of {self.stake_count/self.wins} stake")
+        print (f"{self.wins} Wins, {self.losses} Losses")
+        print (f"Win rate: {round(self.wins/self.sim_length*100, 2)}%")
+        print (f"Average stakes to win: {round(self.stake_count/self.wins)} stake")
 
 if __name__ == "__main__": 
     StakingSimulation(7).run_sim(500, 3000)
-
