@@ -1,7 +1,7 @@
 from random import randint
 
 class StakingSimulation(object):
-    # TODO make stake amount take a dict as well to allow for multiple outputs
+    # TODO make stake amount take a dict (JSON) as well to allow for multiple outputs
 
     def __init__(self, stake_amount: int, sim_length: int = 10000):
         self.stake_amount = stake_amount
@@ -24,7 +24,7 @@ class StakingSimulation(object):
             return True
         if cash <= 0:
             return False
-        win = randint(0,1)
+        win = randint(0,1)  # TODO account for X's w/ dps in each scenario
         if win:
             cash += (self.multiplier * self.stake_amount * self.tax_rate)
             self.multiplier = 1
@@ -46,5 +46,6 @@ class StakingSimulation(object):
         print (f"Win rate: {round(self.wins/self.sim_length*100, 2)}%")
         print (f"Average stakes to win: {round(self.stake_count/self.wins)} stake")
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
+    # TODO take sys args for the sim
     StakingSimulation(7).run_sim(500, 3000)
