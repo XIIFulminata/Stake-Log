@@ -1,11 +1,14 @@
 from random import randint
 
 class StakingSimulation(object):
+    # TODO make stake amount take a dict as well to allow for multiple outputs
 
     def __init__(self, stake_amount: int, sim_length: int = 10000):
         self.stake_amount = stake_amount
         self.sim_length = sim_length
         self.tax_rate = 0.99
+        self.wins = 0
+        self.losses = 0
 
     def _run_sim_helper(self, cash: int, target: int):
         if cash >= target:
@@ -17,15 +20,21 @@ class StakingSimulation(object):
             cash += (self.multiplier * self.stake_amount * self.tax_rate)
             self.multiplier = 1
         else:
-            cash -= (multiplier * stake_amount)
+            cash -= (self.multiplier * self.stake_amount)
             self.multiplier *= 2
         self.stake_num += 1  # TODO print avg stake count
         return self._run_sim_helper(cash, target)
 
     def run_sim(self, cash: int, target: int):
-        self.stake_num = 0
-        self.multiplier = 1
-        self._run_sim_helper(cash, target)
+        for _ in range(self.sim_length):
+            self.stake_num = 0
+            self.multiplier = 1
+            if self._run_sim_helper(cash, target):
+                self.wins += 1
+            else:
+                self.losses += 1
+        print (self.wins, self.losses)
+        print (f"this yields a {self.wins/self.sim_length*100}% win rate")
 
 def stakes(cash: int, target: int, stake_num: int = 0, stake_amount: int = 7, multiplier: int = 1) -> bool:
     """
@@ -38,9 +47,6 @@ def stakes(cash: int, target: int, stake_num: int = 0, stake_amount: int = 7, mu
     stake_amount -- base value of a stake in Mgp
     multiplier -- (user shouldn't access)
     """
-
-    # TODO turn this into a class
-    # TODO make stake amount take a dict as well to allow for multiple outputs
 
     if cash >= target:
         return True
@@ -59,9 +65,11 @@ if __name__ == "__main__":
     wins = losses = 0
     sim_length=10000
     for _ in range(sim_length):
-        if stakes(1500,3000):
+        if stakes(500,3000):
             wins += 1
         else:
             losses += 1
     print (wins, losses)
     print (f"this yields a {wins/sim_length*100}% win rate")
+    StakingSimulation(7).run_sim(500, 3000)
+
