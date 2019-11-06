@@ -1,6 +1,6 @@
 from random import randint
 
-def stakes(cash, target, stake_num=0, stake_amount=7, multiplier=1):
+def stakes(cash: int, target: int, stake_num: int = 0, stake_amount: int = 7, multiplier: int = 1) -> bool:
     if cash >= target:
         return True
     if cash <= 0:
