@@ -1,5 +1,32 @@
 from random import randint
 
+class StakingSimulation(object):
+
+    def __init__(self, stake_amount: int, sim_length: int = 10000):
+        self.stake_amount = stake_amount
+        self.sim_length = sim_length
+        self.tax_rate = 0.99
+
+    def _run_sim_helper(self, cash: int, target: int):
+        if cash >= target:
+            return True
+        if cash <= 0:
+            return False
+        win = randint(0,1)
+        if win:
+            cash += (self.multiplier * self.stake_amount * self.tax_rate)
+            self.multiplier = 1
+        else:
+            cash -= (multiplier * stake_amount)
+            self.multiplier *= 2
+        self.stake_num += 1  # TODO print avg stake count
+        return self._run_sim_helper(cash, target)
+
+    def run_sim(self, cash: int, target: int):
+        self.stake_num = 0
+        self.multiplier = 1
+        self._run_sim_helper(cash, target)
+
 def stakes(cash: int, target: int, stake_num: int = 0, stake_amount: int = 7, multiplier: int = 1) -> bool:
     """
     Returns whether a "player" hits the target gold value in the simulation
