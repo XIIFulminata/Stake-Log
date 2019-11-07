@@ -4,9 +4,19 @@ from random import randint
 
 class StakingSimulation(object):
 
-    def __init__(self, stake_amount: int, sim_length: int = 10000):
-        self.stake_amount = stake_amount
-        self.sim_length = sim_length
+    def __init__(self):
+        try:
+            self.stake_amount = int(input('Enter your base stake? (Default 10M): '))
+        except ValueError:
+            self.stake_amount = 10
+            print("Using default value of 10")
+        
+        try:
+            self.sim_length = int(input('How many simulations should be run? (Default 10,000): '))
+        except ValueError:
+            self.sim_length = 10000
+            print("Using default value of 10,000")
+
         self.tax_rate = 0.99
         self.wins = 0
         self.losses = 0
@@ -36,9 +46,13 @@ class StakingSimulation(object):
         self.stake_num += 1
         return self._run_sim_helper(cash, target)
 
-    def run_sim(self, cash: int, target: int):
-        print (f"Starting cash: {cash}M gp")
-        print (f"Target cash: {target}M gp")
+    def run_sim(self):
+        # TODO make this error out better
+        cash = int(input('Starting cash (in million gp): '))
+        assert cash, "Please enter a number for cash"
+        target = int(input('Target cash (in million gp): '))
+        assert target, "Please enter a number for target"
+        
         print (f"Running sim {self.sim_length} times with a base stake of {self.stake_amount}")
         for _ in range(self.sim_length):
             self.stake_num = 0
@@ -52,5 +66,4 @@ class StakingSimulation(object):
         print (f"Average stakes to win: {round(self.stake_count/self.wins)} stakes")
 
 if __name__ == "__main__":
-    stake_amount, cash, target = [int(x) for x in sys.argv[1:4]]  # TODO use inputs instead
-    sim = StakingSimulation(stake_amount).run_sim(cash, target)
+    sim = StakingSimulation().run_sim()
